@@ -425,7 +425,10 @@ Modified spice file </p>
 
 Spice simulation </p>
 
-![image](https://github.com/himansh107/openlane_workshop/assets/75253218/e9f52bb4-32f7-4598-ad37-db70160f078c) </p>
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/38a709e8-2573-484d-9ed4-7e21689b2db8)
+ </p>
+
+  ![simulation output](https://github.com/himansh107/openlane_workshop/assets/75253218/943a4c68-22bc-4fd5-adb2-63d40523fef6) </p>
 
 **Output rise time** = (time taken by output to rise to 80%) – (time taken by output to rise 20%) = 2.16874 ns – 2.1199 ns = 0.04974ns = **49.74 ps** </p>
 
@@ -439,8 +442,9 @@ Spice simulation </p>
 
 ### MAGIC tutorial 
 
-**drc_tests**
+**drc_tests** </p>
 
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/f8f25443-c87a-4054-bebd-bd2d6701b99f) </p>
 
 
 Metal3 to metal3 spacing is minimum – 0.3um </p>
