@@ -234,6 +234,306 @@ After all this background we ran the **run_synthesis** step. This will run the s
 ![synthesis successful](https://github.com/himansh107/openlane_workshop/assets/75253218/4f0ae59e-b393-4a6c-8b83-5272417bf9f7) </p>
 
 
+File generated as a result after synthesis step </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/660da98d-6abe-484c-9f1f-8dfc3b721778) </p>
+
+File generated as a report after synthesis step </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/9ce73b0e-a059-4cd4-9e84-b2c480688808) </p>
+
+D flipflops = 1613 </br>
+D ff/total cells = 1613/14876 = 10.84% </p>
+
+### Floorplan 
+
+How logic designs are prepared for floorplan (pre placed cells lecture) </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/6bfc7032-935e-49a4-83b6-8a0b6b14d876) </p>
+
+implementation – making the standard cell/IP <br>
+instantiation – using the IP as an instance </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/4a54edea-c056-4f43-800b-48e5f6d01836) </p>
+
+Things taught before preplaced cell – utilization factor, aspect ratio. </br>
+During preplaced cells – de coupling capacitors
+
+**De coupling capacitors** </p>
+
+Due to distance between power supply and logic block. There is a drop in voltage levels reaching the logic block. Charged capacitors are added around the block to compensate for this. These charged capacitors are called, De coupling capacitors. De coupling capacitors are capacitors which help provide enough VDD and GND for operation of the logic block.  </p>
+ 
+After pre placed cells – power planning – vdd and gnd rails</p>
+Then Pin placement 	</p>
+After explanation of pin placement. Configuration files were explained.  </p>
+The tcl files storing the default configurations for each step are stored in the configuration folder of open lane directory. </p>
+Below is the snap showing description of two variables in the README.md file. The README.md file is a guide to knowing meanings of variables. </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/49b9c3e2-f982-49cc-beb9-7dbd846cf560) </p>
+
+Default values of environment variables for floorplan step (below) </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/d90cb706-4fdf-41e9-9a13-159a287e6c37) </p>
+
+**Steps to run floorplan** </p>
+
+```bash
+run_floorplan
+```
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/055af5eb-e479-44d4-97cd-1726c6d9ed5c) </p>
+
+successful floorplan execution </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/348e9685-c2de-41b9-9d40-59bed17ae216) </p>
+
+**Reviewing floorplan files** </p>
+
+We will check the config.tcl files of every location to check which values got precedence </p>
+
+Openlane default configuration for floorplan. Note the core utilization is 50% </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/c6fcc1a3-ab48-4420-95e5-02412844fb32) </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/9655b9e4-23c8-4fee-a6cc-abbeab479633) </p>
+
+contents of sky130A_sky130_fd_sc_hd_config.tcl </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/c53f5498-4723-46aa-9cd0-9c88ae487ff2) </p>
+
+config.tcl file from runs folder. Not the core utilization value – 35% , clock_period – 24.73 </p>
+These values are directly taken from sky130A_sky130_fd_sc_hd_config.tcl overriding the config files from picorv32a folder and the openlane defaults. </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/a673b335-6af3-4998-97b3-2d5ef5ee69e5) </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/636a8e08-56f2-4292-af60-72723b3ae18c) </p>
+
+Thus, precedence of sky130A_sky130_fd_sc_hd_config.tcl is justified </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/60a41222-5c8d-45b5-9ea8-8e6c096e4723) </p>
+
+Reviewing the magic floorplan in magic </p>
+
+Command - 
+
+```bash
+magic -T <pdk tech file location> lef read ../../tmp/merged.lef read def picorv32a.floorplan.def & </p>
+```
+
+**Full floorplan** </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/db81bc5f-1680-4342-a639-8b85f30d6e24) </p>
+
+## Library binding and placement
+
+In a broader sense, library consists of cells, shapes and size of cells, various flavours of the cells and timing information. </p>
+Library is a collection of standard cells and their timing information (delay). </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/94743332-a45a-44f0-9e3b-28fb32e0ae96) </p>
+
+Library can be of two types. 1 type may consist of shapes and sizes of standard cells, while the other type may consist the delay information of these cells. Library has got various flavours of any cell. </p>
+
+**Placement**
+
+Till now, we have the well-defined floorplan with all the pin placement done, we have the power supply grid setup. We have the gate level netlist and the physical view of the logic gates in the netlist. </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/eae4bb48-a58e-4bb7-a731-4090670b1101) </p>
+
+Now we need to place these cells. The placement of the cells is done in a similar fashion as in the netlist. </p>
+Buf = buffer = repeaters. Repeaters are added to improve signal quality. </p>
+
+**Optimized placement**
+
+This is the stage where we estimate wire length and capacitance and based on that, insert repeaters.</p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/bc58ba22-5d27-4cee-8573-776680c0e8db) </p>
+
+We will do a quick setup timing analysis based on an ideal clock. Based on the numbers we get on the setup timing analysis, we’ll come to know whether the placement we have done or not, is reasonable. </p>
+
+
+### Labs for placement step
+
+Placement happens in two stages – </p>
+1. Global placement - coarse placement. Objective is to reduce wire length. (half parameter wire length. (HPW)).</p>
+2. Detailed placement – The standard cells have to be placed inside the standard cell rows. They have to be exactly inside the rows. They should be abutted with each other. There should be no overlaps. </p>
+
+```bash
+run_placement
+```
+
+Objective is to converge the value in OVFL (overflow) variable. </p>
+
+Placement result </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/0a6cb304-c555-4988-a4ad-a5c63c17e9ab) </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/c9217521-3456-4453-bc75-433f6ecb033e) </p>
+ 
+
+
+### Cell design flow 
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/ea493362-6017-4181-abbc-90a9d56a752b) </p>
+
+Characterization flow:
+1. Read in the model file
+2. Read the extracted spice netlist
+3. Define/Recognize the behaviour of the buffer 
+4. Read the subckt of the inverter
+5. Attach the necessary power supplies
+6. Apply the stimulus
+7. Provide output capacitance (variable/varied in a range)
+8. Provide the necessary simulation command
+Feed all the 1-8 steps to GUNA software
+
+
+**Changing pin configuration in floorplan**
+Previously the pins in the floorplan were placed equidistant to each other. We can change this pattern by changing the switches in the floorplan.tcl file of the configurations folder of openlane 
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/bd791ccb-38ef-4409-8b2f-574114ed71f8) </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/90d40ab2-5fbb-4edd-81fd-a3d43f5c83bc) </p>
+
+
+
+This the hungarian pin configuration </p>
+
+
+**CMOS theory taught**
+-	Switching threshold
+-	W/L ratio
+-	dc sweep
+-	transient analysis
+Git clone repository 
+-	16 mask CMOS processs
+-	**LEF files** – LEF files are the files containing just the connectivity information of the layout for eg. Pins information and perimeter boundary. In commercial tools, lef is also called frame view. LEF also serves as the function of protecting the IP. When we buy an IP from the vendor, it is their product. They won’t want their IP to be visible to the world. Using LEF they protect it. (This was cell LEF)
+-	**Technology LEF** – It contains information about available metal layer, via information, DRCs of particular technology used by placer and router etc. 
+
+
+**CMOS layout extraction and spice simulation**
+
+Layout from clone github repo
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/42f41279-bedb-44e0-badb-962bb854fc5b) </p>
+
+Extracting the spice file from layout </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/85968173-e96f-4a18-a8e3-3fa2de3cf0de) </p>
+
+Modified spice file </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/58fc7b43-9a73-4e74-aedd-10c3af0cb106) </p>
+
+Spice simulation </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/e9f52bb4-32f7-4598-ad37-db70160f078c) </p>
+
+**Output rise time** = (time taken by output to rise to 80%) – (time taken by output to rise 20%) = 2.16874 ns – 2.1199 ns = 0.04974ns = **49.74 ps** </p>
+
+**Output fall time** = (time taken by output to fall by 80%) - (time taken by output to fall by 20%)
+= 4.06638 – 4.03971 = 0.0266ns = **26.6ps** </p>
+
+**Propagation delay for rising outpu**t = (time taken by output to rise to 50%) – (time taken by input to fall to 50%) = 2.18653 – 2.15 = 0.03653ns = 36.53ps </p>
+
+**Propagation delay for falling output** = (time taken by output to fall to 50%) – (time taken by input to rise to 50%) = 4.05326 - 4.05003 = 0.00323 = 3.23ps </p>
+
+
+### MAGIC tutorial 
+
+**drc_tests**
+
+
+
+Metal3 to metal3 spacing is minimum – 0.3um </p>
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/0f901e91-1135-462b-8bde-ec46e2e06c78)
+
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/db3e34dc-adc2-446d-8756-6b0faae7ac34) </p>
+
+
+
+Checked box – these are the contact cuts. They don’t actually exist in the draw layout view but they represent the mask layer for via 2 that would end up in the output GDS, when we generate GDS from the layout.</p> 
+The view we see in the layout window is called a feedback entry and it sticks around for as long as you want and you can dismiss it with the command feedback clear or feed clear for short </p>
+feed clear command </p>
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/0607aa42-fe53-477f-87e6-bccce02bbc61) </p>
+
+
+**Lab for poly.9 drc**
+
+drc rule in sky130 pdk </p>
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/277c0bf9-0015-4d4f-bce4-ace0086ba225) </p>
+
+
+The poly to polyres distance should be 0.48um. but the magic layout doesn’t show a drc despite being less than 0.48um. </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/e4ba3586-f8e2-4eb1-938d-7a958b8fbe73) </p>
+
+
+
+To solve this, we have to edit the tech file </p>
+Adding lines in tech file </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/af7f85d9-c583-41a4-90c6-def9cfdba925) </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/4b286604-840d-441b-9a3b-aa508481527c) </p>
+
+Reloading the tech file </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/09ca8021-9cc2-4af3-8be4-14ddca5a9cb0) </p>
+
+drc checking again </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/373b1286-d789-413e-868e-bbe9ffd6233f) </p>
+
+
+
+
+
+**Lab for npoly res to diff drc** 		
+
+the npoly res doesn’t show drc error, while the ppolyres and xpolyres shows drc error.</p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/9b281e9a-bbe8-4667-9773-d9e82407c262) </p>
+
+Modifying the tech file for drc </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/e7b46e72-41f2-408b-bacc-ac9cde623c86) </p>
+
+drc showing properly. (npolyres to diff spacing < 0.48um) </p>
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/1ade281e-e8ca-49c1-93e2-dec697db9707) </p>
+
+
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/d00b5ff7-9f2d-4934-87d6-38ed2f80cf0b)
+ </p>
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
