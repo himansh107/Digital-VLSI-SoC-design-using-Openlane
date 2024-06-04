@@ -561,7 +561,10 @@ Setting the grid according to the tracks.info file </p>
 
 The layout satisfies the 2nd condition of a standard cell i.e. the width of the standard cell must be in odd multiples of x pitch. In this case it is 3 times x pitch (1+1+1/2) </p>
 
-![image](https://github.com/himansh107/openlane_workshop/assets/75253218/5e108412-31e0-4ee9-afd2-7bdb19e8d871) </p>
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/d73e8785-e380-4509-a613-a3fa0e3300c9) </p>
+
+
+
 
 Labs to convert our standard cell layout into LEF file
 1. set the pin labels as ports
@@ -571,55 +574,57 @@ Labs to convert our standard cell layout into LEF file
 - port use is for what use the pins are placed. 
 1. use types are signal and power </p>
 
-![image](https://github.com/himansh107/openlane_workshop/assets/75253218/515a2460-574a-49f0-a5f0-b19b270b902d) </p>
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/5e108412-31e0-4ee9-afd2-7bdb19e8d871) </p>
 
 port class can be set in magic tkcon terminal as shown below </p>
-
-![image](https://github.com/himansh107/openlane_workshop/assets/75253218/3ecae684-9528-47a6-85e0-860fa792139f) </p>
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/515a2460-574a-49f0-a5f0-b19b270b902d) </p>
 
 After setting the port class and use, we are ready to extract the lef file </p>
 
 Extracting the lef file </p>
 
-![image](https://github.com/himansh107/openlane_workshop/assets/75253218/33fec069-17b9-414f-a5af-20f8d19eaf5a) </p>
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/3ecae684-9528-47a6-85e0-860fa792139f) </p>
+
+
 
 Extracted lef file </p>
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/33fec069-17b9-414f-a5af-20f8d19eaf5a) </p>
 
-![image](https://github.com/himansh107/openlane_workshop/assets/75253218/fae7ccb8-1250-47ad-9e28-130e94477af7) </p>
 
 **Now we need to integrate the lef file into picorv32a** </p>
 
 Commands added to config.tcl in picorv32a folder to include our sky130A_inv standard cell </p>
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/fae7ccb8-1250-47ad-9e28-130e94477af7) </p>
 
-![image](https://github.com/himansh107/openlane_workshop/assets/75253218/f6e933f3-4f41-41a5-b36f-7487976fe97f)
 
 Integrating the lef file of sky130a_inv into the openlane flow </p>
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/f6e933f3-4f41-41a5-b36f-7487976fe97f) </p>
 
-![image](https://github.com/himansh107/openlane_workshop/assets/75253218/9ab41a85-cc96-477a-8655-901d8ccea603) </p>
+
 
 Executing synthesis again. We see that there are 1554 instances of our inverter </p>
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/9ab41a85-cc96-477a-8655-901d8ccea603) </p>
 
-![image](https://github.com/himansh107/openlane_workshop/assets/75253218/f73bf235-5be0-41a6-ad0c-cedc02673678) </p>
 
 There is a slack violation here and the violation is -23.89 </p>
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/f73bf235-5be0-41a6-ad0c-cedc02673678) </p>
 
-![image](https://github.com/himansh107/openlane_workshop/assets/75253218/fe7a6968-09f2-41c2-9c4f-a937ebb327f7) </p>
 
 Chip area = 147712.918400 </p>
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/fe7a6968-09f2-41c2-9c4f-a937ebb327f7) </p>
 
-![image](https://github.com/himansh107/openlane_workshop/assets/75253218/6b927a85-c852-4a17-b1c2-ff4e27ec0b10) </p>
 
 To fix the slack violation we need to edit the synthesis strategy and other related variables: </p>
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/6b927a85-c852-4a17-b1c2-ff4e27ec0b10) </p>
 
-![image](https://github.com/himansh107/openlane_workshop/assets/75253218/354ce7c0-d495-441e-ac69-f107367e8f82) </p>
 
 SYNTH_STRATEGY – sets synthesis priority to delay reduction or area reduction </br>
 SYNTH_BUFFERING – Enables abc cell buffering, Enabled = 1, Disabled = 0 </br> 
 SYNTH_SIZING - Enables abc cell sizing (instead of buffering), Enabled = 1, Disabled = 0 (Default: `0`) </br>
-
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/354ce7c0-d495-441e-ac69-f107367e8f82) </p>
 ![image](https://github.com/himansh107/openlane_workshop/assets/75253218/fdf7cf8b-6f64-4749-a830-32b6a6b7c191) </p>
 
-![image](https://github.com/himansh107/openlane_workshop/assets/75253218/ced0c6e3-b476-461c-927b-dc383f55229b) </p>
+
 
 
 || before | after |
@@ -631,16 +636,16 @@ SYNTH_SIZING - Enables abc cell sizing (instead of buffering), Enabled = 1, Disa
 Chip area has increased as per chosen strategy </p>
 
 Integrated “sky130_himinv“ into the merged.lef file </p>
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/ced0c6e3-b476-461c-927b-dc383f55229b) </p>
 
-![image](https://github.com/himansh107/openlane_workshop/assets/75253218/53bbf839-ae6f-4166-8839-bdea6b586a81)
 
 **Running floorplan via organic method**
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/53bbf839-ae6f-4166-8839-bdea6b586a81) </p>
 
-![image](https://github.com/himansh107/openlane_workshop/assets/75253218/7a9fc9b3-506f-489b-b8ee-7ba2bc24f497) </p>
 
 executing placement </p>
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/7a9fc9b3-506f-489b-b8ee-7ba2bc24f497) </p>
 
-![image](https://github.com/himansh107/openlane_workshop/assets/75253218/829b2ccb-cfdb-4bdc-b4af-5a1b726566a4) </p>
 
 **Post synthesis STA analysis** 
 
@@ -649,25 +654,25 @@ sta pre_sta.conf
 ````
 
 initial results </p>
-
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/829b2ccb-cfdb-4bdc-b4af-5a1b726566a4) </p>
 
 ![image](https://github.com/himansh107/openlane_workshop/assets/75253218/b93534d2-593e-4eb3-90ef-fb8480b8a28c) </p>
 
-![image](https://github.com/himansh107/openlane_workshop/assets/75253218/f4ecd695-8f01-4d7c-94f0-fbfd8ead28c3) </p>
+
 
 Changing the max fanout value for meeting timing requirements </p>
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/f4ecd695-8f01-4d7c-94f0-fbfd8ead28c3) </p>
 
-![image](https://github.com/himansh107/openlane_workshop/assets/75253218/d368820c-debb-49b5-8bd6-501d53b76526) </p>
 
 **New STA results**  
-
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/d368820c-debb-49b5-8bd6-501d53b76526) </p>
 ![image](https://github.com/himansh107/openlane_workshop/assets/75253218/9103202c-cb50-490d-9c52-ecccaa599b68) </p>
 
-![image](https://github.com/himansh107/openlane_workshop/assets/75253218/6a374a12-43b5-4808-9d34-ab5b399f5fed) </p>
 
 As we can clearly see in the picture below, slack is met. We didn’t need to replace any standard cells. This is because we executed the synthesis flow using combination of SYNTH_STRATEGY = DELAY3 and MAX_FANOUT = 4.   </p>
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/6a374a12-43b5-4808-9d34-ab5b399f5fed) </p>
 
-![image](https://github.com/himansh107/openlane_workshop/assets/75253218/ba25d646-3864-4f4a-b5f7-b38b65e7b057) </p>
+
 
 **Setup Slack – 8.11, Hold slack – 0.24** </p>
 
@@ -693,6 +698,176 @@ report_checks -fields {net cap slew input_pins} -digits 4
 ### Running CTS
 
 Variables defining the CTS stage </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/d1da8b5c-547a-45bb-99ed-898f2ba56cf7) </p>
+
+executing run_cts </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/82711313-112f-4fbb-a1fd-5bded3708f59) </p>
+
+new cts file created in synthesis folder </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/998a35fe-7217-4b1c-bdca-b633b22e4d9d) </p>
+
+verifying CTS step by checking values of the environment variables of CTS </p>
+
+Note – CTS_MAX_CAP is the capacitance value of the largest clock buffer. The largest clock buffer was known from echoing the variable CTS_ROOT_BUFFER. (indicated by arrows below) </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/6de96c41-fb00-429f-99aa-ffd54010eded) </p>
+
+**STA with real clocks** </p>
+
+Real clock circuits have buffers in their path </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/10f02ae9-5f2c-4084-8310-f437ef26d42c) </p>
+
+Entering Openroad to do the timing analysis. (timing analysis is done by openSTA, openSTA is included in Openroad). </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/70d91965-ab31-48d1-95c8-74a5b31bd59b) </p>
+
+### Commands to be run in OpenLANE flow to do OpenROAD timing analysis with integrated OpenSTA in OpenROAD
+
+```
+# Command to run OpenROAD tool
+openroad
+
+# Reading lef file
+read_lef /openLANE_flow/designs/picorv32a/runs/04-06_16-16/tmp/merged.lef
+
+# Reading def file
+read_def /openLANE_flow/designs/picorv32a/runs/04-06_16-16/results/cts/picorv32a.cts.def
+
+# Creating an OpenROAD database to work with
+write_db pico_cts.db
+
+# Loading the created database in OpenROAD
+read_db pico_cts.db
+
+# Read netlist post CTS
+read_verilog /openLANE_flow/designs/picorv32a/runs/04-06_16-16/results/synthesis/picorv32a.synthesis_cts.v
+
+# Read library for design
+read_liberty $::env(LIB_SYNTH_COMPLETE)
+
+# Link design and library
+link_design picorv32a
+
+# Read in the custom sdc we created
+read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
+
+# Setting all cloks as propagated clocks
+set_propagated_clock [all_clocks]
+
+# Generating custom timing report
+report_checks -path_delay min_max -fields {slew trans net cap input_pins} -format full_clock_expanded -digits 4
+
+# Exit to OpenLANE flow
+exit
+
+```
+
+**Setup slack value for post cts timing analysis**
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/980f52c5-5382-4665-9770-91ea3ce10123) </p>
+
+**hold slack**  </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/8656b484-7dee-494e-981c-03f550eee151) </p>
+
+### Effect of changing clock_buffers on STA
+
+removing clock_buff_1 usage </p> 
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/561a6f6f-32a4-491e-8381-18c98f05c948) </p>
+
+STA results of the design without clock_buf_1 </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/f8cb703b-b475-440b-8dd3-3911418ed3f3) </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/9e4b18b5-e439-4414-b402-e05561f82511) </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/3e66af83-cc92-424a-8bac-f88d9163531f) </p>
+
+|| before | after |
+|:---: | :---:  | :-: |
+|setup slack|13.9481|13.9481|
+|hold slack|0.1278|0.2774|
+
+clock skew results </p>
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/bb793f53-7cc3-4909-a8fb-b319b0d428f4) </p>
+
+### Power delivery network
+
+```
+gen_pdn
+```
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/042d77e9-aa7c-46cf-a575-988872f74cad) </p>
+
+The resulting file **14-pdn.def** contains the information from **cts.def** as well as the power distribution network. </p>
+
+PDN layout result </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/b09ca435-6e5f-4bf9-a5fa-33e3ff36b591) </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/ce91293c-79d7-4397-9dea-1309f7a2577d) </p>
+
+### Routing step
+
+1. Global routing - fast route tool
+2. Detail routing - Triton route tool 
+
+
+Input files in routing stage:
+1. LEF files
+2. DEF files
+3. Preprocessing route guides – what you get after global routing with the fast route tool
+
+**Executing routing by command**
+
+```
+run_routing
+```
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/d51a3f7d-0495-47c8-a845-befc661eb8b5) </p>
+
+routing completed </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/4957bf77-0e14-4de4-bf99-4f5d22d35abd) </p>
+ 
+**Routed design snapshot by tool** </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/935e1e4a-e723-4f91-9f7e-688674654deb) </p>
+
+**Routed layout in magic tool** </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/f69896d8-2d90-4237-8187-86eed46931c6) </p>
+
+zoomed in </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/378c3d7a-24c7-49eb-8db4-e691c53fb5f7) </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/cc646a3c-0007-4e62-8176-c2310211cf51) </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/67011ce0-0247-4600-b8ad-7422d9ae9f11) </p>
+
+extracted spef file as a part of routing process. </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/323ecd30-4fa2-4ec2-b9b5-c1b294dc7cc4) </p>
+
+### Post routing STA
+
+Hold slack </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/a2a13ec0-cec5-4c00-a501-e235ed4769ab) </p>
+
+Setup slack </p>
+ 
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/2fb9340a-0cd6-4763-b66b-5cb7dc526095) </p>
+
+
+
+
+
 
 
 
