@@ -694,7 +694,6 @@ report_checks -fields {net cap slew input_pins} -digits 4
 
 Variables defining the CTS stage </p>
 
-![Uploading image.png…]() </p>
 
 
 
