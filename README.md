@@ -506,9 +506,221 @@ drc showing properly. (npolyres to diff spacing < 0.48um) </p>
 ![image](https://github.com/himansh107/openlane_workshop/assets/75253218/1ade281e-e8ca-49c1-93e2-dec697db9707) </p>
 
 
+**Lab challenge exercise to describe DRC error as geometrical construct**
 
-![image](https://github.com/himansh107/openlane_workshop/assets/75253218/d00b5ff7-9f2d-4934-87d6-38ed2f80cf0b)
- </p>
+drc rule in tech file </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/26d9be42-b613-427c-8940-1d3451f964ac) </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/96696e09-a391-41ef-b9e0-efef88704380) </p>
+
+drc rule in sky130pdk </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/94ef3d02-8fca-4ce9-bf06-5781aa61974d) </p>
+
+DRC rule violation because min enclosure of nwell hole by deep nwell outside is < 1.030um </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/da99af35-2cea-48b9-a65e-62cea20178a3) </p>
+
+using cif commands to see missing nwell part </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/a804294b-4570-4dd1-b7c6-2947beb0fd3d) </p>
+
+**Lab challenge to find missing or incorrect rules and fix them**
+
+nwell should have a n substrate contact inside it (nwell.4). The below nwell layout should flag a drc error but it is not. </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/38178778-bfea-4083-bf39-dcb2be842b18) </p>
+
+(nwell.4) drc rule on sky130pdk website </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/21e3aab8-46b9-4fcb-b6a4-233758df5e88) </p>
+
+**Modifying the tech file**
+
+Adding cifmaxwidth rule for n-well missing tap </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/a9b9be20-7a95-4e1b-8036-c84bb10b44d3) </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/293732e9-261e-4cf3-a436-3811452f8692) </p>
+
+reloading the tech file, setting drc style to drc(full) and doing drc check again </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/94f5ce2b-d447-420e-b8f1-7484a401f115) </p>
+
+ROUTES are basically metal traces. Traces of li, metal1, metal2 </p>
+Where you want you routes to go? </p>
+There are certain guidelines to follow while making standard cells: </p>
+
+- The ports of the layout have to be on the intersection of the horizontal and vertical tracks so that the router can reach there.
+- The width of the standard cell should be an odd multiple of the x pitch. X pitch means horizontal width of the grid box. </p>
+
+Setting the grid according to the tracks.info file </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/e13cdfca-8e3a-4cba-b922-69aa7c6669c6) </p>
+
+The layout satisfies the 2nd condition of a standard cell i.e. the width of the standard cell must be in odd multiples of x pitch. In this case it is 3 times x pitch (1+1+1/2) </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/5e108412-31e0-4ee9-afd2-7bdb19e8d871) </p>
+
+Labs to convert our standard cell layout into LEF file
+1. set the pin labels as ports
+2. set port class and port use
+-  port classes are input/output/inout
+- inout is used for power and ground pins
+- port use is for what use the pins are placed. 
+1. use types are signal and power </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/515a2460-574a-49f0-a5f0-b19b270b902d) </p>
+
+port class can be set in magic tkcon terminal as shown below </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/3ecae684-9528-47a6-85e0-860fa792139f) </p>
+
+After setting the port class and use, we are ready to extract the lef file </p>
+
+Extracting the lef file </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/33fec069-17b9-414f-a5af-20f8d19eaf5a) </p>
+
+Extracted lef file </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/fae7ccb8-1250-47ad-9e28-130e94477af7) </p>
+
+**Now we need to integrate the lef file into picorv32a** </p>
+
+Commands added to config.tcl in picorv32a folder to include our sky130A_inv standard cell </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/f6e933f3-4f41-41a5-b36f-7487976fe97f)
+
+Integrating the lef file of sky130a_inv into the openlane flow </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/9ab41a85-cc96-477a-8655-901d8ccea603) </p>
+
+Executing synthesis again. We see that there are 1554 instances of our inverter </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/f73bf235-5be0-41a6-ad0c-cedc02673678) </p>
+
+There is a slack violation here and the violation is -23.89 </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/fe7a6968-09f2-41c2-9c4f-a937ebb327f7) </p>
+
+Chip area = 147712.918400 </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/6b927a85-c852-4a17-b1c2-ff4e27ec0b10) </p>
+
+To fix the slack violation we need to edit the synthesis strategy and other related variables: </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/354ce7c0-d495-441e-ac69-f107367e8f82) </p>
+
+SYNTH_STRATEGY – sets synthesis priority to delay reduction or area reduction </br>
+SYNTH_BUFFERING – Enables abc cell buffering, Enabled = 1, Disabled = 0 </br> 
+SYNTH_SIZING - Enables abc cell sizing (instead of buffering), Enabled = 1, Disabled = 0 (Default: `0`) </br>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/fdf7cf8b-6f64-4749-a830-32b6a6b7c191) </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/ced0c6e3-b476-461c-927b-dc383f55229b) </p>
+
+
+|| before | after |
+|:---: | :---:  | :-: |
+|tns|-711.59|0|
+|wns|-23.8|0|
+|chip area|147712.91|181730.54 |
+
+Chip area has increased as per chosen strategy </p>
+
+Integrated “sky130_himinv“ into the merged.lef file </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/53bbf839-ae6f-4166-8839-bdea6b586a81)
+
+**Running floorplan via organic method**
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/7a9fc9b3-506f-489b-b8ee-7ba2bc24f497) </p>
+
+executing placement </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/829b2ccb-cfdb-4bdc-b4af-5a1b726566a4) </p>
+
+**Post synthesis STA analysis** 
+
+````
+sta pre_sta.conf
+````
+
+initial results </p>
+
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/b93534d2-593e-4eb3-90ef-fb8480b8a28c) </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/f4ecd695-8f01-4d7c-94f0-fbfd8ead28c3) </p>
+
+Changing the max fanout value for meeting timing requirements </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/d368820c-debb-49b5-8bd6-501d53b76526) </p>
+
+**New STA results**  
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/9103202c-cb50-490d-9c52-ecccaa599b68) </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/6a374a12-43b5-4808-9d34-ab5b399f5fed) </p>
+
+As we can clearly see in the picture below, slack is met. We didn’t need to replace any standard cells. This is because we executed the synthesis flow using combination of SYNTH_STRATEGY = DELAY3 and MAX_FANOUT = 4.   </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/ba25d646-3864-4f4a-b5f7-b38b65e7b057) </p>
+
+**Setup Slack – 8.11, Hold slack – 0.24** </p>
+
+**Commands to do basic timing ECO** </p>
+
+To Reports all the connections to a net
+```
+report_net -connections _11672_
+```
+To Check the command syntax
+```
+help replace_cell
+```
+To Replace the cell
+```
+replace_cell _14510_ sky130_fd_sc_hd__or3_4
+```
+To Generate the custom timing report
+```
+report_checks -fields {net cap slew input_pins} -digits 4
+```
+
+### Running CTS
+
+Variables defining the CTS stage </p>
+
+![Uploading image.png…]() </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
