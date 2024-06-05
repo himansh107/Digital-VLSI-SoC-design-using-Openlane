@@ -245,7 +245,7 @@ File generated as a report after synthesis step </p>
 D flipflops = 1613 </br>
 D ff/total cells = 1613/14876 = 10.84% </p>
 
-### Floorplan 
+## Day 2 labs : Floorplan & Placement
 
 How logic designs are prepared for floorplan (pre placed cells lecture) </p>
 
@@ -371,7 +371,7 @@ Placement result </p>
  
 
 
-### Cell design flow 
+## Day 3 Theory & Labs : Cell design flow 
 
 ![image](https://github.com/himansh107/openlane_workshop/assets/75253218/ea493362-6017-4181-abbc-90a9d56a752b) </p>
 
@@ -440,7 +440,7 @@ Spice simulation </p>
 **Propagation delay for falling output** = (time taken by output to fall to 50%) – (time taken by input to rise to 50%) = 4.05326 - 4.05003 = 0.00323 = 3.23ps </p>
 
 
-### MAGIC tutorial 
+## Day 3 MAGIC tutorial 
 
 **drc_tests** </p>
 
@@ -452,7 +452,6 @@ Metal3 to metal3 spacing is minimum – 0.3um </p>
 
 
 ![image](https://github.com/himansh107/openlane_workshop/assets/75253218/db3e34dc-adc2-446d-8756-6b0faae7ac34) </p>
-
 
 
 Checked box – these are the contact cuts. They don’t actually exist in the draw layout view but they represent the mask layer for via 2 that would end up in the output GDS, when we generate GDS from the layout.</p> 
@@ -547,6 +546,9 @@ Adding cifmaxwidth rule for n-well missing tap </p>
 reloading the tech file, setting drc style to drc(full) and doing drc check again </p>
 
 ![image](https://github.com/himansh107/openlane_workshop/assets/75253218/94f5ce2b-d447-420e-b8f1-7484a401f115) </p>
+
+
+## Day 4 labs
 
 ROUTES are basically metal traces. Traces of li, metal1, metal2 </p>
 Where you want you routes to go? </p>
@@ -812,7 +814,7 @@ PDN layout result </p>
 
 ![image](https://github.com/himansh107/openlane_workshop/assets/75253218/ce91293c-79d7-4397-9dea-1309f7a2577d) </p>
 
-### Routing step
+## Day 5 Labs : Routing 
 
 1. Global routing - fast route tool
 2. Detail routing - Triton route tool 
