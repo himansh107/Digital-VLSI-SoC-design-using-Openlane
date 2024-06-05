@@ -1,4 +1,8 @@
 # Openlane_workshop
+## Contents
+
+<a href="#header-1">Day 1 Labs : Open Lane directory structure in detail</a>
+
 
 ## Day1 theory
 
@@ -133,8 +137,7 @@ An openLANE update introduced a new tool, ARC that can be used to check for ante
 In LVS we do layout vs schematic to check whether they are equivalent. The spice netlist for layout is extracted using Magic and then netgen performs comparison between this and the Verilog netlist. 
 </p>
 
-
-## Day 1 Labs : Open Lane directory structure in detail
+<h2 id="header-1">Day 1 Labs : Open Lane directory structure in detail</h2>
 
 The sky130A folder in the openlane directory consists of two folders </p>
 1. libs.ref – contains all process specific files eg the timing, the lef, the cell lef
