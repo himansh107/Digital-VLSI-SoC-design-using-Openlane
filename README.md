@@ -1,11 +1,11 @@
 # Openlane_workshop
 ## Contents
 
-<a href="#header-1">Day 1 Labs</a>
-<a href="#header-2">Day 2 Labs</a>
-<a href="#header-3">Day 3 Labs</a>
-<a href="#header-4">Day 4 Labs</a>
-<a href="#header-5">Day 5 Labs</a>
+- <a href="#header-1">Day 1 Labs</a>
+- <a href="#header-2">Day 2 Labs</a>
+- <a href="#header-3">Day 3 Labs</a>
+- <a href="#header-4">Day 4 Labs</a>
+- <a href="#header-5">Day 5 Labs</a>
 
 ## Day1 theory
 
