@@ -1,8 +1,11 @@
 # Openlane_workshop
 ## Contents
 
-<a href="#header-1">Day 1 Labs : Open Lane directory structure in detail</a>
-
+<a href="#header-1">Day 1 Labs</a>
+<a href="#header-2">Day 2 Labs</a>
+<a href="#header-3">Day 3 Labs</a>
+<a href="#header-4">Day 4 Labs</a>
+<a href="#header-5">Day 5 Labs</a>
 
 ## Day1 theory
 
@@ -248,7 +251,7 @@ File generated as a report after synthesis step </p>
 D flipflops = 1613 </br>
 D ff/total cells = 1613/14876 = 10.84% </p>
 
-## Day 2 labs : Floorplan & Placement
+<h2 id="header-2">Day 2 labs : Floorplan & Placement</h2>
 
 How logic designs are prepared for floorplan (pre placed cells lecture) </p>
 
@@ -373,8 +376,7 @@ Placement result </p>
 ![image](https://github.com/himansh107/openlane_workshop/assets/75253218/c9217521-3456-4453-bc75-433f6ecb033e) </p>
  
 
-
-## Day 3 Theory & Labs : Cell design flow 
+<h2 id="header-3">Day 3 Theory & Labs : Cell design flow </h2>
 
 ![image](https://github.com/himansh107/openlane_workshop/assets/75253218/ea493362-6017-4181-abbc-90a9d56a752b) </p>
 
@@ -550,8 +552,7 @@ reloading the tech file, setting drc style to drc(full) and doing drc check agai
 
 ![image](https://github.com/himansh107/openlane_workshop/assets/75253218/94f5ce2b-d447-420e-b8f1-7484a401f115) </p>
 
-
-## Day 4 labs
+<h2 id="header-4">Day 4 labs : sky130_vsdinv integration & STA</h2>
 
 ROUTES are basically metal traces. Traces of li, metal1, metal2 </p>
 Where you want you routes to go? </p>
@@ -817,7 +818,7 @@ PDN layout result </p>
 
 ![image](https://github.com/himansh107/openlane_workshop/assets/75253218/ce91293c-79d7-4397-9dea-1309f7a2577d) </p>
 
-## Day 5 Labs : Routing 
+<h2 id="header-5">Day 5 Labs : Routing</h2>
 
 1. Global routing - fast route tool
 2. Detail routing - Triton route tool 
