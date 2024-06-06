@@ -1,4 +1,4 @@
-# Openlane_workshop
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/8901c251-b128-435d-945b-3149e6f7ba61)# Openlane_workshop
 ## Contents
 
 - <a href="#header-1">Day 1 Labs</a>
@@ -641,11 +641,17 @@ SYNTH_SIZING - Enables abc cell sizing (instead of buffering), Enabled = 1, Disa
 
 Chip area has increased as per chosen strategy </p>
 
-Integrated “sky130_himinv“ into the merged.lef file </p>
-![image](https://github.com/himansh107/openlane_workshop/assets/75253218/ced0c6e3-b476-461c-927b-dc383f55229b) </p>
+Integrated “sky130_vsdinv“ into the merged.lef file </p>
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/ee820646-a4df-4bd4-8168-fddafb51544f)</p>
+
+**sky130_vsdinv in magic layout** </p>
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/3ef7a7fd-efff-4c94-b875-b961cbe132ad)
+ </p>
 
 
-**Running floorplan via organic method**
+**Running floorplan via organic method** </p>
+
 ![image](https://github.com/himansh107/openlane_workshop/assets/75253218/53bbf839-ae6f-4166-8839-bdea6b586a81) </p>
 
 
