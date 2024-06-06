@@ -7,6 +7,12 @@
 - <a href="#header-4">Day 4 Labs</a>
 - <a href="#header-5">Day 5 Labs</a>
 
+## A primer on Openlane
+
+![image](https://github.com/himansh107/openlane_workshop/assets/75253218/0960f31f-810c-4d2d-9391-f83de3fdc9db)
+
+Openlane is a suite of open-source EDA tools used to execute the digital ASIC design flow (RTL to GDS). There are various open-source tools like Yosys, ABC, OpenROAD, OpenSTA, FastRoute, Fault, etc., for different steps in the ASIC flow. Openlane integrates all of them and provides a method to automate the entire RTL to GDS flow using commands like run_synthesis, run_placement, etc. </p>
+
 ## Day1 theory
 
 ### Simplified RTL to GDS flow
