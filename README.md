@@ -1,4 +1,4 @@
-![image](https://github.com/himansh107/openlane_workshop/assets/75253218/8901c251-b128-435d-945b-3149e6f7ba61)# Openlane_workshop
+# Openlane_workshop
 ## Contents
 
 - <a href="#header-1">Day 1 Labs</a>
