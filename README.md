@@ -15,7 +15,7 @@ Openlane is a suite of open-source EDA tools used to execute the digital ASIC de
 
 ## Overview of the repo
 
-The 2 week course trained us on the executing the RTL2GDS flow using Opensource EDA tools. The RTL for a picorv32a (a CPU core that implements the RISC-V Instruction set) was provided and we had to do synthesis, STA, Floorplan, Placement, CTS and Routing using Openlane. An custom made inverter IP was also integrated into the CPU core and the STA of the circuit was done to know it's effect.
+The 2 week course trained us on the executing the RTL2GDS flow using Opensource EDA tools. The RTL for a picorv32a (a CPU core that implements the RISC-V Instruction set) was provided and we had to do synthesis, STA, Floorplan, Placement, CTS and Routing using Openlane. A custom made inverter IP was also integrated into the CPU core and the STA of the circuit was done to know it's effect.
 
 ## Day1 theory
 
