@@ -1,4 +1,4 @@
-# Openlane_workshop
+# Digital VLSI SoC design using Openlane 
 ## Contents
 
 - <a href="#header-1">Day 1 Labs</a>
@@ -12,6 +12,10 @@
 ![image](https://github.com/himansh107/openlane_workshop/assets/75253218/0960f31f-810c-4d2d-9391-f83de3fdc9db)
 
 Openlane is a suite of open-source EDA tools used to execute the digital ASIC design flow (RTL to GDS). There are various open-source tools like Yosys, ABC, OpenROAD, OpenSTA, FastRoute, Fault, etc., for different steps in the ASIC flow. Openlane integrates all of them and provides a method to automate the entire RTL to GDS flow using commands like run_synthesis, run_placement, etc. </p>
+
+## Overview of the repo
+
+The 2 week course trained us on the executing the RTL2GDS flow using Opensource EDA tools. The RTL for a picorv32a (a CPU core that implements the RISC-V Instruction set) was provided and we had to do synthesis, STA, Floorplan, Placement, CTS and Routing using Openlane. An custom made inverter IP was also integrated into the CPU core and the STA of the circuit was done to know it's effect.
 
 ## Day1 theory
 
