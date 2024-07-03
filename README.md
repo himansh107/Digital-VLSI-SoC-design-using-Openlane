@@ -883,9 +883,16 @@ Setup slack </p>
 ![image](https://github.com/himansh107/openlane_workshop/assets/75253218/2fb9340a-0cd6-4763-b66b-5cb7dc526095) </p>
 
 
+# Certificate
+
+![44_VSD nasscom Certificate 2024GitHub Repo certificate (1)_page-0001](https://github.com/himansh107/openlane_workshop/assets/75253218/672dfb7d-7782-44c0-bcf7-88c65bdcb462)
 
 
+# Acknowledgements
 
+* [Kunal Ghosh](https://github.com/kunalg123), Co-founder, VSD Corp. Pvt. Ltd.
+* [Nickson P Jose](https://github.com/nickson-jose), Physical Design Engineer, Intel Corporation.
+* [R. Timothy Edwards](https://github.com/RTimothyEdwards), Senior Vice President of Analog and Design, efabless Corporation.
 
 
 
